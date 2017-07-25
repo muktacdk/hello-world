@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * Created by kulkarmu on 7/24/2017.
  */
 @Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.ANNOTATION_TYPE)
+@Target(ElementType.TYPE)
 @interface TimeStamp {
     Day day();
     Month month();
