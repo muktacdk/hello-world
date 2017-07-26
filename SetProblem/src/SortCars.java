@@ -7,17 +7,38 @@ public class SortCars {
 
     public static void main(String[] args) {
         Set<Car> cars = new TreeSet<>();
-        cars = createSetData(cars);
+        createSetData(cars);
 
         Iterator<Car> itr  = cars.iterator();
 
         while(itr.hasNext()){
             Car car = itr.next();
-            System.out.println(car.getId() + "   " + car.getBrand() + "   " + car.getPrice());
+            System.out.println(car);
         }
         System.out.println("=========================================");
 
-        Set<Car> cars1 = new TreeSet<>(new IDComaparator());
+        List<Car> list = new ArrayList<>();
+        list.addAll(cars);
+        Collections.sort(list, new IDComaparator());
+
+        Iterator<Car> itr1  = list.iterator();
+
+        while(itr1.hasNext()){
+            Car car = itr1.next();
+            System.out.println(car);
+        }
+        System.out.println("=========================================");
+
+        Collections.sort(list, new BrandComparator());
+
+        Iterator<Car> itr2  = list.iterator();
+
+        while(itr2.hasNext()){
+            Car car = itr2.next();
+            System.out.println(car);
+        }
+
+        /*Set<Car> cars1 = new TreeSet<>(new IDComaparator());
         cars1 = createSetData(cars1);
 
         Iterator<Car> itr1  = cars1.iterator();
@@ -40,7 +61,7 @@ public class SortCars {
         }
 
 
-        /*Collections.sort(cars);
+        Collections.sort(cars);
         Iterator<Car> itr  = cars.iterator();
 
         while(itr.hasNext()){
@@ -55,7 +76,7 @@ public class SortCars {
 
     }
 
-    private static Set<Car> createSetData(Set<Car> cars){
+    private static void createSetData(Set<Car> cars){
         cars.add(new Car(101, "Honda", 3000000.0));
         cars.add(new Car(102, "BMW", 7000000.0));
         cars.add(new Car(110, "Renault", 4000000.0));
@@ -78,7 +99,6 @@ public class SortCars {
         cars.add(new Car(1200, "Renault", 6700000.0));
         cars.add(new Car(1121, "BMW", 7200000.0));
 
-        return cars;
     }
 
     /*private static void sortOnId() {
