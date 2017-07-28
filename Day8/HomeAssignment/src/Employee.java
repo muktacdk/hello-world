@@ -7,7 +7,7 @@ public class Employee implements Comparable, Serializable {
 
    int uid;
    String name;
-   double salary;
+   transient double salary;
 
     public Employee(int uid, String name, double salary) {
         this.uid = uid;

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class SortEmployees {
     static List<Employee> employees = new ArrayList<>();
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EOFException{
         createData();
         List<Employee> emp = new ArrayList<>();
         Iterator<Employee> itr = employees.iterator();
@@ -20,16 +20,21 @@ public class SortEmployees {
         }
         Collections.sort(emp);
 
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+
         try {
-            FileOutputStream fos = new FileOutputStream("C:\\Users\\kulkarmu\\IdeaProjects\\Day8\\HomeAssignment\\src\\employees.txt");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            fos = new FileOutputStream("C:\\Users\\kulkarmu\\IdeaProjects\\Day8\\HomeAssignment\\src\\employees.txt");
+            oos = new ObjectOutputStream(fos);
             Iterator<Employee> itr1 = emp.iterator();
             while(itr1.hasNext()){
                 oos.writeObject(itr1.next());
             }
 
-            FileInputStream fis = new FileInputStream("C:\\Users\\kulkarmu\\IdeaProjects\\Day8\\HomeAssignment\\src\\employees.txt");
-            ObjectInputStream ois = new ObjectInputStream(fis);
+            fis = new FileInputStream("C:\\Users\\kulkarmu\\IdeaProjects\\Day8\\HomeAssignment\\src\\employees.txt");
+            ois = new ObjectInputStream(fis);
 
             while (ois.available() != -1) {
                 Employee e = (Employee)ois.readObject();
@@ -39,9 +44,34 @@ public class SortEmployees {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e){
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (ClassNotFoundException e){
             e.printStackTrace();
+        } finally {
+            if(oos != null)
+                try {
+                    oos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            if(fos != null)
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            if(ois != null)
+                try {
+                    ois.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            if(fis != null)
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
         }
     }
 
