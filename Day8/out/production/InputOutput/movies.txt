@@ -1,0 +1,4 @@
+name : Dangal 
+Actor : Amir 
+Director : abc 
+Duration : 3hrs
