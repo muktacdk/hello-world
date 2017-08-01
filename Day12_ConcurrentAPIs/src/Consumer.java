@@ -3,7 +3,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * Created by kulkarmu on 8/1/2017.
  */
-public class Consumer extends Thread {
+public class Consumer implements Runnable {
     LinkedBlockingQueue<Integer> blockingQueue = new LinkedBlockingQueue<>();
 
     public Consumer(LinkedBlockingQueue<Integer> blockingQueue) {

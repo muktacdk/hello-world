@@ -10,8 +10,11 @@ public class Main {
         Producer producer = new Producer(blockingQueue);
         Consumer consumer = new Consumer(blockingQueue);
 
-        producer.start();
-        consumer.start();
+        Thread thread1 = new Thread(producer);
+        Thread thread2 = new Thread(consumer);
+
+        thread1.start();
+        thread2.start();
     }
 
 
